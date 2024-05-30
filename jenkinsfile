@@ -1,12 +1,25 @@
-node {
-    stage('checkout') {
-        checkout scmGit(branches: [[name: 'main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/KEVIN-XTREM-2023/jenkisns-demo']])
- 
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'branch', defaultValue: 'main', description: 'Git Branch to build')
+        string(name: 'message', defaultValue: 'No commit message provided', description: 'Commit Message')
     }
 
-     stage('Print') {
-        echo 'hola mundo'
-        sh 'npm install'
-    } 
-}
+    stages {
+        stage('checkout') {
+            steps {
+                script {
+                    checkout scmGit(branches: [[name: params.branch]], extensions: [], userRemoteConfigs: [[url: 'https://github.com/KEVIN-XTREM-2023/jenkisns-demo']])
+                }
+            }
+        }
 
+        stage('Print') {
+            steps {
+                echo 'hola mundo'
+                
+            }
+        }
+    }
+}
