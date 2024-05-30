@@ -6,7 +6,7 @@ node {
 
      stage('Print') {
         echo 'hola mundo'
-       /*  sh 'npm install' */
+        sh 'npm install'
     } 
 }
 
