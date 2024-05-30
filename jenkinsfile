@@ -10,15 +10,21 @@ pipeline {
         stage('checkout') {
             steps {
                 script {
-                    checkout scmGit(branches: [[name: params.branch]], extensions: [], userRemoteConfigs: [[url: 'https://github.com/KEVIN-XTREM-2023/jenkisns-demo']])
+                    // Se utiliza la variable 'branch' para obtener la rama a compilar
+                    def branchToBuild = params.branch
+                    // Se utiliza la variable 'message' para obtener el mensaje de confirmación
+                    def commitMessage = params.message
+                    
+                    // Se realiza la comprobación de la rama especificada
+                    checkout([$class: 'GitSCM', branches: [[name: branchToBuild]], userRemoteConfigs: [[url: 'https://github.com/KEVIN-XTREM-2023/jenkisns-demo']]])
                 }
             }
         }
 
-        stage('Print') {
+        stage('Build') {
             steps {
-                echo 'hola mundo'
-                
+                // Aquí colocarías los pasos necesarios para compilar tu proyecto
+                echo "Compilando la rama ${params.branch} con el mensaje de confirmación: ${params.message}"
             }
         }
     }
