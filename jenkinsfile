@@ -1,6 +1,5 @@
 node {
     checkout scmGit(branches: [[name: 'main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/KEVIN-XTREM-2023/jenkisns-demo']])
-    sh 'echo "HOLA MUNDO"'
-    sh 'ls -la'
+
 }
 
