@@ -4,8 +4,9 @@ node {
  
     }
 
-    /* stage('Print') {
-        echo "Hola mundo"
-    } */
+     stage('Print') {
+        /* echo "Hola mundo" */
+        sh 'npm install'
+    } 
 }
 
